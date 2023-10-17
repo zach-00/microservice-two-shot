@@ -11,6 +11,7 @@ django.setup()
 
 # Import models from hats_rest, here.
 # from hats_rest.models import Something
+# adsfasdfasfaf
 
 def poll():
     while True:
