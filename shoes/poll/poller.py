@@ -9,7 +9,7 @@ sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "shoes_project.settings")
 django.setup()
 
-# Import models from hats_rest, here.
+# Import models from shoes_rest, here.
 # from shoes_rest.models import Something
 
 def poll():
