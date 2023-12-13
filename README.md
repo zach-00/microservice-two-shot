@@ -2,7 +2,7 @@
 
 Team:
 
-* Warren C. Longmire - Hats
+* Person 1 - Which microservice?
 * Person 2 - Which microservice?
 
 ## Design
