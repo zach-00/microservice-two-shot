@@ -8,17 +8,17 @@ from django.http import JsonResponse
 
 class LocationVODetailEncoder(ModelEncoder):
     model = LocationVO
-    properties = ["name", "section_number", "shelf_number", "import_href"]
+    properties = ["name", "import_href"]
 
 
 class HatListEncoder(ModelEncoder):
     model = Hat
-    properties = ["name", "import_href"]
+    properties = ["style_name", "id"]
 
 
 class HatDetailEncoder(ModelEncoder):
     model = Hat
-    properties = ["fabric", "style_name", "color", "picture_url",]
+    properties = ["fabric", "style_name", "color", "picture_url", "location"]
 
     encoders = {
         "location": LocationVODetailEncoder(),
@@ -40,12 +40,12 @@ def api_list_hats(request, location_vo_id=None):
         content = json.loads(request.body)
 
         try:
-            locations_href = f"/api/locations/{location_vo_id}/"
-            locations = LocationVO.objects.get(import_href=locations_href)
-            content["locations"] = locations
+            location_href = content["location"]
+            location = LocationVO.objects.get(import_href=location_href)
+            content["location"] = location
         except LocationVO.DoesNotExist:
             return JsonResponse(
-                {"message": "Invalid conference id"},
+                {"message": "Invalid location id"},
                 status=400,
             )
 
@@ -56,11 +56,17 @@ def api_list_hats(request, location_vo_id=None):
             safe=False,
         )
 
+@require_http_methods({"DELETE", "GET"})
+def api_show_hat(request, id):
+    if request.method == "GET":
+        hat = Hat.objects.get(id=id)
+        return JsonResponse(
+            hat,
+            encoder=HatDetailEncoder,
+            safe=False,
+        )
 
-def api_show_hat(request, pk):
-    hat = Hat.objects.get(id=pk)
-    return JsonResponse(
-        hat,
-        encoder=HatDetailEncoder,
-        safe=False,
-    )
+    else:
+        if request.method == "DELETE":
+            count, _ = Hat.objects.filter(id=id).delete()
+            return JsonResponse({"delete": count > 0})
