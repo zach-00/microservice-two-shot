@@ -2,8 +2,8 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Person 1 - Zach: - Which microservice? Shoes
+* Person 2 - Gary: - Which microservice? Hats
 
 ## Design
 
