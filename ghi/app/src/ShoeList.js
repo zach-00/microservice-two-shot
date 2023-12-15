@@ -1,50 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
-
-
-function ShoeColumns(props) {
-
-
-
-
-     const handleDelete = async (event) => {
-        const shoeID = event.target.id;
-        const shoeUrl = `http://localhost:8080/api/shoes/${shoeID}`;
-
-        const fetchOptions = {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'applications/json',
-            }
-        }
-
-        const response = await fetch(shoeUrl, fetchOptions);
-        if (response.ok) {
-            console.log("Shoe deleted");
-        }
-     }
-
-    return (
-        <div className="col">
-            {props.list.map(shoeDetail => {
-                return (
-            <div className="card mb-3 shadow" key={shoeDetail.id}>
-                <img src={shoeDetail.picture_url} className="card-img-top"/>
-                <div className="card-body">
-                    <h5 className="card-title">{shoeDetail.manufacturer}, {shoeDetail.name}</h5>
-                    <p className="card-text">{shoeDetail.color}</p>
-                    <NavLink onClick={handleDelete} to="#" id={shoeDetail.id} className="btn btn-primary">Delete Shoe</NavLink>
-                </div>
-            </div>
-                );
-            })}
-        </div>
-
-    );
-}
-
-
 function ShoeList() {
     const [ columns, setColumns ] = useState([[], [], []]);
 
@@ -87,9 +43,50 @@ function ShoeList() {
 
     useEffect(() => {
         fetchData();
-    }, [columns]);
+    }, []);
 
 
+    function ShoeColumns(props) {
+
+
+
+
+        const handleDelete = async (event) => {
+           const shoeID = event.target.id;
+           const shoeUrl = `http://localhost:8080/api/shoes/${shoeID}`;
+
+           const fetchOptions = {
+               method: "DELETE",
+               headers: {
+                   'Content-Type': 'applications/json',
+               }
+           }
+
+           const response = await fetch(shoeUrl, fetchOptions);
+           if (response.ok) {
+               console.log("Shoe deleted");
+                fetchData();
+           }
+        }
+
+       return (
+           <div className="col">
+               {props.list.map(shoeDetail => {
+                   return (
+               <div className="card mb-3 shadow" key={shoeDetail.id}>
+                   <img src={shoeDetail.picture_url} className="card-img-top"/>
+                   <div className="card-body">
+                       <h5 className="card-title">{shoeDetail.manufacturer}, {shoeDetail.name}</h5>
+                       <p className="card-text">{shoeDetail.color}</p>
+                       <NavLink onClick={handleDelete} to="#" id={shoeDetail.id} className="btn btn-primary">Delete Shoe</NavLink>
+                   </div>
+               </div>
+                   );
+               })}
+           </div>
+
+       );
+   }
 
     return (
         <div className="container">
