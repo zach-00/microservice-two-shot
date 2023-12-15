@@ -1,11 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 
 
 function ShoeColumns(props) {
 
-    console.log("PROPS.SHOESLIST************", props.list);
+
+
+
+     const handleDelete = async (event) => {
+        const shoeID = event.target.id;
+        const shoeUrl = `http://localhost:8080/api/shoes/${shoeID}`;
+
+        const fetchOptions = {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'applications/json',
+            }
+        }
+
+        const response = await fetch(shoeUrl, fetchOptions);
+        if (response.ok) {
+            console.log("Shoe deleted");
+        }
+     }
 
     return (
         <div className="col">
@@ -16,7 +34,7 @@ function ShoeColumns(props) {
                 <div className="card-body">
                     <h5 className="card-title">{shoeDetail.manufacturer}, {shoeDetail.name}</h5>
                     <p className="card-text">{shoeDetail.color}</p>
-                    <NavLink to="#" className="btn btn-primary">Delete Shoe</NavLink>
+                    <NavLink onClick={handleDelete} to="#" id={shoeDetail.id} className="btn btn-primary">Delete Shoe</NavLink>
                 </div>
             </div>
                 );
@@ -50,7 +68,6 @@ function ShoeList() {
                 for (let shoeResponse of responses) {
                     if (shoeResponse.ok) {
                         const shoeData = await shoeResponse.json();
-                        console.log("URL*******************", shoeData.picture_url);
                         shoeColumns[i].push(shoeData);
                         i++;
                         if (i > 2) {
@@ -61,7 +78,6 @@ function ShoeList() {
                     }
                 }
                 setColumns(shoeColumns);
-                console.log("COLUMNS*******************", columns);
             }
     } catch (error) {
         console.error(error);
@@ -71,7 +87,7 @@ function ShoeList() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [columns]);
 
 
 
