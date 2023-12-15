@@ -8,7 +8,7 @@ from django.http import JsonResponse
 
 class LocationVODetailEncoder(ModelEncoder):
     model = LocationVO
-    properties = ["name", "import_href"]
+    properties = ["closet_name", "import_href"]
 
 
 class HatListEncoder(ModelEncoder):

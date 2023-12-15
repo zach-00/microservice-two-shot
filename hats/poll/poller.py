@@ -22,6 +22,7 @@ def get_locations():
     for location in content["locations"]:
         LocationVO.objects.update_or_create(
             import_href=location["href"],
+            closet_name=location["closet_name"],
         )
 
 

@@ -12,7 +12,6 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="hats" element={<HatPage />} />
-          <Route path="shoes" element={<HatForm />} />
         </Routes>
       </div>
     </BrowserRouter>
