@@ -9,8 +9,8 @@ Team:
 
 ## Shoes microservice
 
-Explain your models and integration with the wardrobe
-microservice, here.
+I craeted a BinVO model based off of the Bin model with only the pertinent information. Then, created a poller that will grab data from the wardrobe-api. I created RESTful APIs for creating, listing, showing detail and deleting shoe objects. Next I created React components to show everything in the UI and added buttons that linked to the API functionality I had created.
+
 
 ## Hats microservice
 

@@ -74,10 +74,12 @@ function ShoeList() {
                {props.list.map(shoeDetail => {
                    return (
                <div className="card mb-3 shadow" key={shoeDetail.id}>
+
                    <img src={shoeDetail.picture_url} className="card-img-top"/>
                    <div className="card-body">
                        <h5 className="card-title">{shoeDetail.manufacturer}, {shoeDetail.name}</h5>
                        <p className="card-text">{shoeDetail.color}</p>
+                       <p className="card-text">BIN: {shoeDetail.bin.import_href.split('/')[3]}</p>
                        <NavLink onClick={handleDelete} to="#" id={shoeDetail.id} className="btn btn-primary">Delete Shoe</NavLink>
                    </div>
                </div>
