@@ -67,6 +67,7 @@ def api_shoes(request, bin_vo_id=None):
             safe=False,
         )
 
+
 @require_http_methods(["DELETE", "GET"])
 def api_shoe(request, id):
     if request.method == "DELETE":

@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import HatPage from './HatList.js';
+import HatForm from './HatForm.js';
 
 function App() {
   return (
@@ -9,6 +11,8 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="hats" element={<HatPage />} />
+          <Route path="shoes" element={<HatForm />} />
         </Routes>
       </div>
     </BrowserRouter>
