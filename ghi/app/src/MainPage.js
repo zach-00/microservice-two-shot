@@ -12,7 +12,18 @@ function MainPage() {
           the solution for you!
         </p>
       </div>
-        <ShoeForm />
+
+      <div className="container text-center">
+        <div className="row">
+          <div className="col">
+            <ShoeForm />
+          </div>
+          <div className="col">
+            <HatForm />
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }
