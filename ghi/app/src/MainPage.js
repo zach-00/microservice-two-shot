@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 import HatForm from "./HatForm";
-=======
 import ShoeForm from "./ShoeForm";
->>>>>>> main
+
 
 function MainPage() {
   return (
