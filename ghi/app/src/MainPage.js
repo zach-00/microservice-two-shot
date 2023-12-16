@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import HatForm from "./HatForm";
+=======
+import ShoeForm from "./ShoeForm";
+>>>>>>> main
 
 function MainPage() {
   return (
@@ -10,6 +14,7 @@ function MainPage() {
           the solution for you!
         </p>
       </div>
+        <ShoeForm />
     </div>
   );
 }
